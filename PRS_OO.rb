@@ -14,13 +14,12 @@ end
 class Human < Player
   def choose_hand
   
-  begin
-    puts "Please select your move"
-    self.choice = gets.chomp.downcase
-  end until Game::CHOICE.keys.include?(choice)
-
-    self.choice = choice
-  end
+    begin
+      puts "Please select your move"
+      self.choice = gets.chomp.downcase
+    end until Game::CHOICE.keys.include?(choice)
+      self.choice = choice
+    end
 end
 
 class Computer < Player
@@ -28,7 +27,6 @@ class Computer < Player
     self.choice = Game::CHOICE.keys.sample
   end
 end
-
 
 class Game
   attr_reader :player, :computer
