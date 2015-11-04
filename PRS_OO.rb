@@ -1,13 +1,9 @@
+require "pry"
 
 class Player
-    attr_accessor :choice, :name
+  attr_accessor :choice, :name
   def initialize(name)
     @name = name
-  end
-
-  def ask_for_name
-    puts "[What's your name?]"
-    self.name = gets.chomp
   end
 
   def to_s
@@ -25,7 +21,6 @@ class Human < Player
 
     self.choice = choice
   end
-    
 end
 
 class Computer < Player
@@ -46,6 +41,8 @@ class Game
 
   def display_welcome_message
     puts "Welcome to the Paper, Rock, Scissors game!"
+    puts "What's your name?"
+    player.name = gets.chomp
   end
 
   def display_result
@@ -62,21 +59,22 @@ class Game
 
   def play_again?
     puts "Would you like to play again? (y/n)"
-    asnwer = gets.chomp.downcase
-    Game.new.play if asnwer == "y"
+    answer = gets.chomp.downcase
+    true if answer == "y"
   end
 
   def play
     display_welcome_message
-    player.ask_for_name
-    player.choose_hand
-    computer.choose_hand
-    puts player
-    puts computer
-    display_result
-    play_again?
-  end
 
+    loop do
+      player.choose_hand
+      computer.choose_hand
+      puts player
+      puts computer
+      display_result
+    break if !play_again?
+    end
+  end
 end
 
 Game.new.play
