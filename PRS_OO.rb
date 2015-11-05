@@ -75,7 +75,7 @@ class Game
       puts player
       puts computer
       display_result
-    break if !play_again?
+      break if !play_again?
     end
   end
 end
